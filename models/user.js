@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 /* The user schema attributes / characteristics / fields */
 var UserSchema = new mongoose.Schema({
-  email: {type: String, uniqueL true, lowercase: true},
+  email: {type: String, unique: true, lowercase: true},
   password: String,
 
   profile: {
@@ -46,3 +46,6 @@ UserSchema.pre('save', function(next){
 UserSchema.methods.comparePassword = function(password){
   return bcrypt.compareSync(password, this.password)
 }
+
+
+module.exports = mongoose.model('User', UserSchema);
